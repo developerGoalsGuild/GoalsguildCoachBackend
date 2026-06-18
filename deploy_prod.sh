@@ -3,6 +3,9 @@ set -euo pipefail
 umask 077
 export AWS_PAGER=""
 
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
+
 echo "=================================================="
 echo "🚀 Deploying GoalsGuild Coach to Production AWS"
 echo "=================================================="
@@ -21,7 +24,9 @@ if [ ! -f infra/terraform/environments/prod.tfvars ]; then
 fi
 
 APP_VERSION="$(tr -d '[:space:]' < VERSION 2>/dev/null || echo "1.1.0")"
-ARTIFACTS_DIR="${ARTIFACTS_DIR:-../artifacts}"
+# Desktop installers live in the client repo (HRCoach) by default
+DESKTOP_REPO="${DESKTOP_REPO:-$ROOT_DIR/../HRCoach}"
+ARTIFACTS_DIR="${ARTIFACTS_DIR:-$DESKTOP_REPO}"
 
 cd infra/terraform
 echo "☁️  1. Deploying AWS Infrastructure via Terraform..."
@@ -130,7 +135,7 @@ PY
 fi
 
 echo "📦 3. Building static landing page with production API URL..."
-cd ../../landing
+cd "$ROOT_DIR/landing"
 npm ci
 echo "🧹 Cleaning previous Next.js build artifacts..."
 rm -rf .next out

@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
+
 echo "=================================================="
 echo "🛠️  Deploying GoalsGuild Coach to LOCALSTACK"
 echo "=================================================="
@@ -16,7 +19,7 @@ FRONTEND_BUCKET=$(terraform output -raw frontend_s3_bucket)
 CLOUDFRONT_URL=$(terraform output -raw frontend_cloudfront_url)
 
 echo "📦 2. Building static landing page with Local API URL..."
-cd ../../landing
+cd "$ROOT_DIR/landing"
 npm install
 echo "🧹 Cleaning previous Next.js build artifacts..."
 rm -rf .next out
