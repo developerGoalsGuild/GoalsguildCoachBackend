@@ -1,6 +1,8 @@
 # GoalsGuild Coach — Backend & Infrastructure
 
-Repositório separado com a API de licenciamento, infraestrutura AWS e site estático (landing).
+> **Canonical repo:** backend and landing now live in [HRCoach](https://github.com/developerGoalsGuild/HRCoach) (sibling `../HRCoach`). This repository is a mirror; prefer HRCoach for active development.
+
+Repositório com a API de licenciamento, infraestrutura AWS e site estático (landing).
 
 Repositório remoto: [developerGoalsGuild/GoalsguildCoachBackend](https://github.com/developerGoalsGuild/GoalsguildCoachBackend.git)
 
