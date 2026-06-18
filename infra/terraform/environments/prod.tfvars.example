@@ -1,0 +1,38 @@
+environment             = "prod"
+localstack_enabled      = false
+aws_region              = "us-east-1"
+backend_region          = "us-east-2"
+allowed_origins         = ["https://your-custom-domain.com"]
+frontend_url            = "https://your-custom-domain.com"
+source_email            = "hello@your-custom-domain.com"
+ses_region              = "us-east-2"
+allow_insecure_defaults = false
+trial_days              = 7
+app_version             = "1.1.0"
+
+# SECRETS (Do not commit the real values to git!)
+jwt_secret              = "your_super_secure_jwt_secret_here"
+cache_validation_secret = "your_super_secure_cache_secret_here"
+
+# Optional: override only if your SSM parameter names differ from the defaults
+# /goalsguild/prod/stripe_secret_key
+# /goalsguild/prod/stripe_price_id
+# /goalsguild/prod/stripe_webhook_secret
+# stripe_secret_key_param   = "/goalsguild/prod/stripe_secret_key"
+# stripe_price_id_param     = "/goalsguild/prod/stripe_price_id"
+# stripe_webhook_secret_param = "/goalsguild/prod/stripe_webhook_secret"
+
+api_throttle_rate_limit = 20
+api_throttle_burst_limit = 40
+webhook_throttle_rate_limit = 10
+webhook_throttle_burst_limit = 20
+waf_rate_limit          = 2000
+
+# QuickSight dashboard (opt-in). Requires an Enterprise QuickSight account
+# in the same region as the analytics resources, and the principal must have
+# been registered (e.g. via the QuickSight admin console) before apply.
+# quicksight_dashboard_enabled = true
+# quicksight_principal_arn     = "arn:aws:quicksight:us-east-1:838284111015:user/default/your-quicksight-user"
+# analytics_export_schedule    = "rate(1 day)"
+# analytics_include_email      = false
+# analytics_export_lookback_days = 365
